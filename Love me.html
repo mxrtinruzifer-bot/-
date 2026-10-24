@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>มีอะไรจะบอก 💗</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: Tahoma, sans-serif;
+      background: linear-gradient(135deg, #ffd6e7, #ffeef5, #e8d9ff);
+    }
+
+    .card {
+      width: min(90%, 420px);
+      padding: 35px 24px;
+      text-align: center;
+      background: rgba(255,255,255,0.82);
+      border: 2px solid white;
+      border-radius: 28px;
+      box-shadow: 0 15px 45px #d88bb744;
+      position: relative;
+      z-index: 2;
+      animation: appear 1s ease;
+    }
+
+    .heart {
+      font-size: 75px;
+      animation: beat 1s infinite;
+    }
+
+    h1 {
+      color: #e75480;
+      font-size: 27px;
+    }
+
+    p {
+      color: #77566a;
+      line-height: 1.9;
+    }
+
+    button {
+      border: none;
+      border-radius: 30px;
+      padding: 13px 24px;
+      margin: 7px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .yes {
+      background: #ff6392;
+      color: white;
+      box-shadow: 0 5px 15px #ff639255;
+    }
+
+    .yes:hover {
+      transform: scale(1.08);
+      background: #f03e78;
+    }
+
+    .no {
+      background: #f0e5f5;
+      color: #795d86;
+    }
+
+    .floating {
+      position: fixed;
+      bottom: -40px;
+      pointer-events: none;
+      animation: floatUp linear forwards;
+      z-index: 1;
+    }
+
+    #result {
+      color: #e75480;
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 18px;
+    }
+
+    @keyframes beat {
+      50% { transform: scale(1.18); }
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatUp {
+      to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <div class="heart">💗</div>
+
+    <h1>เธอ ๆ เรามีอะไรจะบอก</h1>
+
+    <p>
+      ตั้งแต่ได้รู้จักเธอ<br>
+      วันธรรมดาของเราก็พิเศษขึ้นเลยนะ 🥺<br>
+      เราขอถามอะไรหน่อยได้ไหม...
+    </p>
+
+    <h2 style="color:#d94f82">
+      เป็นแฟนกับเราไหม 💕
+    </h2>
+
+    
+    <button type="button" onclick="window.location.href='./LoveMe2.html'">
+      ตกลง 💖
+    </button>
+
+
+    <button class="no" onclick="thinkMore()">
+      ขอคิดดูก่อน 🙈
+    </button>
+
+    <div id="result"></div>
+  </main>
+
+  <script>
+    function acceptLove() {
+      document.getElementById("result").innerHTML =
+        "เย้! ขอบคุณที่ให้โอกาสเรานะ 💗🥹";
+
+      for (let i = 0; i < 30; i++) {
+        setTimeout(createHeart, i * 80);
+      }
+    }
+
+    function thinkMore() {
+      document.getElementById("result").innerHTML =
+        "ไม่เป็นไรนะ ค่อย ๆ คิดก็ได้ 😊💗";
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "floating";
+      heart.textContent = ["💗", "💕", "💖", "🌸"][ 
+        Math.floor(Math.random() * 4)
+      ];
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (20 + Math.random() * 25) + "px";
+      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6500);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+</body>
+</html>
